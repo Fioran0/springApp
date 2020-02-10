@@ -16,7 +16,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 import javax.transaction.Transactional;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -64,19 +66,51 @@ public class SpringBootStarter implements CommandLineRunner {
 
 //        booksService.nameAndCost();
 
-//        purchaseService.addPurchase(new Purchase(634521,
-//                new Shop("Книголюб", "Нижегородский", 9.0),
-//                new Buyer("Феофанов", "Советский",  9.0), 2, 999.0,
-//                new Books("test", 99.0, "Gagarina", 1) ));
+/*       Purchase purchase = new Purchase();
+
+        purchase.setOrderNumber(524624);
+        purchase.setDate(new Date(119,11,11));
+        purchase.setQuantity(145);
+        purchase.setSum(1111.0);
+
+        Buyer buyer = new Buyer();
+//        buyer.setId(0);
+        buyer.setSurname("surname");
+        buyer.setDiscount(11.9);
+        buyer.setResidenceArea("residence");
+        purchase.setBuyer(buyer);
+
+        Shop shop = new Shop();
+//        shop.setId(0);
+        shop.setShopName("test");
+        shop.setShopLocationArea("asdfads");
+        shop.setCommissionFee(11.9);
+        purchase.setSeller(shop);
+
+        Books books = new Books();
+        books.setBookName("testname");
+        books.setBookCost(111.0);
+        books.setBookQuantity(11);
+        books.setBookWarehouse("adfgadf");
+        purchase.setBook(Arrays.asList(books));
+        purchaseService.addPurchase(purchase);*/
+
+/*        purchaseService.addPurchase(new Purchase(634521, new Date(119,11,15),
+                new Shop("Книголюб", "Нижегородский", 9.0),
+                Arrays.asList(new Books("test", 99.0, "Gagarina", 1)),
+                new Buyer("Феофанов", "Советский",  9.0), 2,999.0 ));*/
 
 //        purchaseService.addPurchase(new Purchase(634521,
 //                new Shop("Книголюб", "Нижегородский", 9.0),
 //                new Buyer("Феофанов", "Советский",  9.0), 2, 999.0,
 //                booksService.findById(2)));
 
-//        buyerService.addBook(new Buyer("Феофанов", "Советский",  9.0)); //TO DO
+//        buyerService.addBuyer(new Buyer("Феофанов", "Советский",  9.0));
 
-//        shopService.addShop(new Shop("Книголюб", "Нижегородский", 9.0)); // TO DO
+//        shopService.addShop(new Shop("Книголюбы", "Нижегородский", 9.0));
+
+//        booksService.addBook(new Books("test", 111.0, "test", 0));
+
 
         }
 

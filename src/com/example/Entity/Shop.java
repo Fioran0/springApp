@@ -1,9 +1,12 @@
 package com.example.Entity;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,22 +19,23 @@ import org.hibernate.annotations.NotFoundAction;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table(name = "shop", schema = "shop")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+@Table(name = "shop", schema = "purchase")
 public class Shop implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @Column(name = "shop_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    //  @Column(name = "id", insertable = false, nullable = false)
-    @MapsId
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+
+//    @JoinColumn(name = "shop_id")
+/*    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
     @ToString.Exclude
     @JsonIgnore
     @NotFound(action= NotFoundAction.IGNORE)
-    private Purchase purchase;
+    private List<Purchase> purchase;*/
 
     @Column(name = "name")
     private String shopName;
@@ -39,23 +43,13 @@ public class Shop implements Serializable {
     @Column(name = "locationarea")
     private String shopLocationArea;
 
-    public Shop(String shopName) {
-        this.shopName = shopName;
-    }
-
     @Column(name = "commissionfee")
-    private Double CommissionFee;
+    private Double commissionFee;
 
     public Shop(String shopName, String shopLocationArea, Double commissionFee) {
         this.shopName = shopName;
         this.shopLocationArea = shopLocationArea;
-        CommissionFee = commissionFee;
+        this.commissionFee = commissionFee;
     }
 
-    public Shop(Purchase purchase, String shopName, String shopLocationArea, Double commissionFee) {
-        this.purchase = purchase;
-        this.shopName = shopName;
-        this.shopLocationArea = shopLocationArea;
-        CommissionFee = commissionFee;
-    }
 }
