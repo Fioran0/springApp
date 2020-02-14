@@ -5,9 +5,11 @@ import com.example.Repository.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class PurchaseServiceImpl {
 
     @Autowired
@@ -28,14 +30,6 @@ public class PurchaseServiceImpl {
     public Purchase addPurchase(Purchase purchase){
         Purchase savedPurchase = purchaseRepository.saveAndFlush(purchase);
         return savedPurchase;
-    }
-
-    public List<Object> findAllp(){
-        return purchaseRepository.retrievePurchaseAll();
-    }
-
-    public List<Object> getPurchases(){
-        return purchaseRepository.retrievePurchaseAll();
     }
 
 }

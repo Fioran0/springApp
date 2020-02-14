@@ -11,7 +11,7 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 
-@Table(name = "books", schema = "shop")
+@Table(name = "books", schema = "purchase")
 @Data
 @Entity
 @AllArgsConstructor
@@ -22,16 +22,17 @@ public class Books implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @Column(name = "book_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @MapsId
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+/*    @MapsId
+    @ManyToOne(optional = false, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "book_id", insertable = false, updatable = false)
     @ToString.Exclude
     @JsonIgnore
     @NotFound(action=NotFoundAction.IGNORE)
-    private Purchase purchase;
+    private Purchase purchase;*/
 
     @Column(name = "name")
     private String bookName;
@@ -45,59 +46,13 @@ public class Books implements Serializable {
     @Column(name = "quantity")
     private Integer bookQuantity;
 
-    public Books(Integer id, String bookName, Double bookCost, String bookWarehouse, Integer bookQuantity) {
-        this.id = id;
-        this.purchase = new Purchase();
-        this.bookName = bookName;
-        this.bookCost = bookCost;
-        this.bookWarehouse = bookWarehouse;
-        this.bookQuantity = bookQuantity;
-    }
 
     public Books(String bookName, Double bookCost, String bookWarehouse, Integer bookQuantity) {
-        this.purchase = new Purchase();
         this.bookName = bookName;
         this.bookCost = bookCost;
         this.bookWarehouse = bookWarehouse;
         this.bookQuantity = bookQuantity;
     }
 
-    public Books(String bookName, Double bookCost) {
-        this.bookName = bookName;
-        this.bookCost = bookCost;
-    }
-
-    public Books(String bookName, String bookWarehouse) {
-        this.bookName = bookName;
-        this.bookWarehouse = bookWarehouse;
-    }
-
-    public Books(String bookName, Integer bookQuantity) {
-        this.bookName = bookName;
-        this.bookQuantity = bookQuantity;
-    }
-
-    public Books(Double bookCost, String bookWarehouse) {
-        this.bookCost = bookCost;
-        this.bookWarehouse = bookWarehouse;
-    }
-
-    public Books(String bookName, Double bookCost, String bookWarehouse) {
-        this.bookName = bookName;
-        this.bookCost = bookCost;
-        this.bookWarehouse = bookWarehouse;
-    }
-
-    public Books(String bookName, Double bookCost, Integer bookQuantity) {
-        this.bookName = bookName;
-        this.bookCost = bookCost;
-        this.bookQuantity = bookQuantity;
-    }
-
-    public Books(Double bookCost, String bookWarehouse, Integer bookQuantity) {
-        this.bookCost = bookCost;
-        this.bookWarehouse = bookWarehouse;
-        this.bookQuantity = bookQuantity;
-    }
 
 }

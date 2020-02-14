@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class BuyerServiceImpl {
 
     @Autowired
@@ -27,10 +29,10 @@ public class BuyerServiceImpl {
     }
 
 
-    public Buyer addBook(Buyer buyer) {
+    public Buyer addBuyer(Buyer buyer) {
 
-        Buyer savedBook = buyerRepository.saveAndFlush(buyer);
-        return savedBook;
+        Buyer savedBuyer = buyerRepository.saveAndFlush(buyer);
+        return savedBuyer;
     }
 
     public Buyer updateById(int id, Buyer buyer){
